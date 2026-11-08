@@ -40,7 +40,7 @@ export function classProgress(months: number, classes = FORMDER_CLASSES) {
   const years = months / 12;
   const idx = classes.findIndex((c) => years >= c.minYears && (c.maxYears === null || years < c.maxYears));
   const i = idx === -1 ? 0 : idx;
-  const current = classes[i];
+  const current = classes[i]!;
   const next = classes[i + 1] ?? null;
   if (!next) return { current, next: null, index: i, percent: 100, remainingMonths: 0 };
   const startM = current.minYears * 12;

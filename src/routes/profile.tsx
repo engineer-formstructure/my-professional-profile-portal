@@ -130,7 +130,7 @@ function CompetencyCard() {
   const idx = ASSESSMENTS.findIndex((a) => a.id === aid);
   const cur = ASSESSMENTS[idx] ?? ASSESSMENTS[0]!;
   const prev = ASSESSMENTS[idx + 1];
-  const data = useMemo(() => DIMENSIONS.map((d) => ({ key: d.key, name: d.name, short: d.short, current: cur.scores[d.key], previous: prev?.scores[d.key] })), [cur, prev]);
+  const data = useMemo(() => DIMENSIONS.map((d) => ({ key: d.key, name: d.name, short: d.short, current: cur.scores[d.key] ?? 0, previous: prev?.scores[d.key] })), [cur, prev]);
 
   return (
     <section className="surface p-6">

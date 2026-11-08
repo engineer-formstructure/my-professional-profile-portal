@@ -31,7 +31,7 @@ const classStyle = (v: string) => ({ "--c": `var(${v})` }) as CSSProperties;
 function ProfilePage() {
   const months = tenureMonths(EMPLOYEE.startDate, new Date());
   const prog = classProgress(months);
-  const latest = ASSESSMENTS[0];
+  const latest = ASSESSMENTS[0]!;
 
   return (
     <div className="min-h-screen bg-background">
@@ -124,11 +124,11 @@ function IdentityCard({ months, className, assessed }: { months: number; classNa
 
 /* ---------------- Competency ---------------- */
 function CompetencyCard() {
-  const [aid, setAid] = useState(ASSESSMENTS[0].id);
+  const [aid, setAid] = useState(ASSESSMENTS[0]!.id);
   const [compare, setCompare] = useState(false);
   const [open, setOpen] = useState<Dimension | null>(null);
   const idx = ASSESSMENTS.findIndex((a) => a.id === aid);
-  const cur = ASSESSMENTS[idx];
+  const cur = ASSESSMENTS[idx] ?? ASSESSMENTS[0]!;
   const prev = ASSESSMENTS[idx + 1];
   const data = useMemo(() => DIMENSIONS.map((d) => ({ key: d.key, name: d.name, short: d.short, current: cur.scores[d.key], previous: prev?.scores[d.key] })), [cur, prev]);
 
